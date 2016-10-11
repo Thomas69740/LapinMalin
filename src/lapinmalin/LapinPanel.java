@@ -91,12 +91,14 @@ public class LapinPanel extends JPanel implements Observer, MouseListener {
     public void DessinerAgent(Objet obj, Graphics g) {
         if (obj instanceof Lapin) {
             if (((Lapin)obj).estVivant()) {
-                g.setColor(Color.GREEN);
+                Color lapinColor = new Color(17, 145, 55);
+                g.setColor(lapinColor);
             }
         }
         else {
             if (((Renard)obj).estVivant()) {
-                g.setColor(Color.BLACK);
+                Color renardColor = new Color(102, 35, 0);
+                g.setColor(renardColor);
             }
         }
 
