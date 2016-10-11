@@ -48,6 +48,11 @@ public class Lapin extends Objet {
     }
 
     protected void MiseAJourDirection(ArrayList<Lapin> lapins) {
+        // Déplacement aléatoire
+        if (Environnement.getInstance().generateur.nextDouble() < PROB_CHGT_DIRECTION) {
+            vitesseX = Environnement.getInstance().generateur.nextDouble() - 0.5;
+            vitesseY = Environnement.getInstance().generateur.nextDouble() - 0.5;
+        }
     }
     public boolean estVivant() {
         return !estMort;
