@@ -1,9 +1,6 @@
 package lapinmalin;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Observable;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by Gildasftw on 11/10/2016.
@@ -47,23 +44,26 @@ public class Environnement extends Observable {
     }
 
     public void MiseAJour() {
-        for (Lapin lapin : lapins) {
-            if (!lapin.estVivant())
-                lapins.remove(lapin);
+        for (Iterator<Lapin> lapin = lapins.iterator(); lapin.hasNext();) {
+            Lapin l = lapin.next();
+            if (!l.estVivant())
+                lapin.remove();
             else {
-                lapin.MiseAJourDirection(lapins);
-                lapin.MiseAJourPosition();
+                l.MiseAJourDirection(lapins);
+                l.MiseAJourPosition();
+            }
+        }
+        for (Iterator<Renard> renard = renards.iterator(); renard.hasNext();) {
+            Renard r = renard.next();
+            if (!r.estVivant())
+                renard.remove();
+            else {
+                r.MiseAJourDirection(renards);
+                r.MiseAJourPosition();
+                r.updateAndCheckIfDead();
             }
         }
 
-        for (Renard renard : renards) {
-            if (!renard.estVivant())
-                renards.remove(renard);
-            else {
-                renard.MiseAJourDirection(renards);
-                renard.MiseAJourPosition();
-            }
-        }
         nbIterations++;
         if (nbIterations % 500 == 0) {
             Collections.reverse(lapins);

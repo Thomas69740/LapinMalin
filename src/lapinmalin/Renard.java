@@ -12,6 +12,7 @@ public class Renard extends Objet {
     protected double vitesseX;
     protected double vitesseY;
     protected boolean estMort = false;
+    protected int turnBeforeDie = 200;
 
     protected void Normaliser() {
         double longueur = Math.sqrt(vitesseX * vitesseX + vitesseY * vitesseY);
@@ -57,9 +58,19 @@ public class Renard extends Objet {
         return !estMort;
     }
 
-    public void setPas(double pas) {this.PAS = pas;}
-    public double getPas() { return this.PAS;}
+    public void updateAndCheckIfDead() {
+        turnBeforeDie--;
+        if (turnBeforeDie == 0) {
+            estMort = true;
+        }
+    }
 
-    public void setProbChgtDirection(double probChgtDirection) { this.PROB_CHGT_DIRECTION = probChgtDirection;}
-    public double getProbChgtDirection() {return this.PROB_CHGT_DIRECTION;}
+    public void setPas(double pas) { this.PAS = pas; }
+    public double getPas() { return this.PAS; }
+
+    public void setTurnBeforeDie(int nbTurn) { this.turnBeforeDie = nbTurn; }
+    public int getTurnBeforeDie() { return this.turnBeforeDie; }
+
+    public void setProbChgtDirection( double probChgtDirection) { this.PROB_CHGT_DIRECTION = probChgtDirection; }
+    public double getProbChgtDirection() { return this.PROB_CHGT_DIRECTION; }
 }
