@@ -7,8 +7,8 @@ import java.util.Collections;
  * Created by Gildasftw on 11/10/2016.
  */
 public class Lapin extends Objet {
-    protected final static double PAS = 3;
-    protected final static double PROB_CHGT_DIRECTION = 0.05;
+    protected static double PAS = 3;
+    protected static double PROB_CHGT_DIRECTION = 0.05;
 
     protected double vitesseX;
     protected double vitesseY;
@@ -57,4 +57,10 @@ public class Lapin extends Objet {
     public boolean estVivant() {
         return !estMort;
     }
+
+    public void setPas(double pas) {this.PAS = pas;}
+    public double getPas() { return this.PAS;}
+
+    public void setProbChgtDirection(double probChgtDirection) { this.PROB_CHGT_DIRECTION = probChgtDirection;}
+    public double getProbChgtDirection() {return this.PROB_CHGT_DIRECTION;}
 }
