@@ -55,8 +55,10 @@ public class Environnement extends Observable {
         }
         for (Iterator<Renard> renard = renards.iterator(); renard.hasNext();) {
             Renard r = renard.next();
-            if (!r.estVivant())
+            if (!r.estVivant()) {
                 renard.remove();
+                System.out.println("Un renard est mort !");
+            }
             else {
                 r.MiseAJourDirection(renards);
                 r.MiseAJourPosition();

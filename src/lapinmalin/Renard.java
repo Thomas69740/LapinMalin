@@ -8,11 +8,12 @@ import java.util.ArrayList;
 public class Renard extends Objet {
     protected static double PAS = 3;
     protected static double PROB_CHGT_DIRECTION = 0.05;
+    protected static int GAIN_LIFE = 200;
 
     protected double vitesseX;
     protected double vitesseY;
     protected boolean estMort = false;
-    protected int turnBeforeDie = 200;
+    protected int turnBeforeDie = 400;
 
     protected void Normaliser() {
         double longueur = Math.sqrt(vitesseX * vitesseX + vitesseY * vitesseY);
@@ -44,6 +45,15 @@ public class Renard extends Objet {
         }
         else if (posY > hauteur) {
             posY = hauteur;
+        }
+        ArrayList<Lapin> lapins = Environnement.getInstance().lapins;
+
+        for(Lapin lapin : lapins) {
+            if ((lapin.posX < posX + 5 && lapin.posX > posX - 5) && (lapin.posY < posY + 5 && lapin.posY > posY - 5)) {
+                lapin.estMort = true;
+                turnBeforeDie += GAIN_LIFE;
+                System.out.println("Un lapin a été mangé !");
+            }
         }
     }
 
