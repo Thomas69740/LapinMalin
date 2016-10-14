@@ -99,7 +99,7 @@ public class LapinPanel extends JPanel implements Observer, MouseListener {
         }
         else {
             if (((Renard)obj).estVivant()) {
-                Color renardColor = new Color(102, 35, 0);
+                Color renardColor = new Color(255, 35, 0);
                 g.setColor(renardColor);
             }
         }
