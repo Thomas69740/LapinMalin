@@ -7,7 +7,7 @@ import java.util.Collections;
  * Created by Gildasftw on 11/10/2016.
  */
 public class Lapin extends Objet {
-    protected static double PAS = 3;
+    protected static double PAS = 2;
     protected static double PROB_CHGT_DIRECTION = 0.05;
     protected static int ZONE_INFLUENCE_LAPIN = 50;
 
@@ -54,6 +54,7 @@ public class Lapin extends Objet {
             vitesseX = Environnement.getInstance().generateur.nextDouble() - 0.5;
             vitesseY = Environnement.getInstance().generateur.nextDouble() - 0.5;
         }
+        Normaliser();
     }
 
     public int zoneInfluence() {
