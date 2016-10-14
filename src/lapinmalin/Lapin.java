@@ -9,6 +9,7 @@ import java.util.Collections;
 public class Lapin extends Objet {
     protected static double PAS = 3;
     protected static double PROB_CHGT_DIRECTION = 0.05;
+    protected static int ZONE_INFLUENCE_LAPIN = 50;
 
     protected double vitesseX;
     protected double vitesseY;
@@ -47,13 +48,18 @@ public class Lapin extends Objet {
         }
     }
 
-    protected void MiseAJourDirection(ArrayList<Lapin> lapins) {
+    protected void MiseAJourDirection() {
         // Déplacement aléatoire
         if (Environnement.getInstance().generateur.nextDouble() < PROB_CHGT_DIRECTION) {
             vitesseX = Environnement.getInstance().generateur.nextDouble() - 0.5;
             vitesseY = Environnement.getInstance().generateur.nextDouble() - 0.5;
         }
     }
+
+    public int zoneInfluence() {
+        return ZONE_INFLUENCE_LAPIN;
+    }
+
     public boolean estVivant() {
         return !estMort;
     }

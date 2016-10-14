@@ -1,6 +1,7 @@
 package lapinmalin;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Gildasftw on 11/10/2016.
@@ -57,12 +58,27 @@ public class Renard extends Objet {
         }
     }
 
-    protected void MiseAJourDirection(ArrayList<Renard> renards) {
+    protected void MiseAJourDirection(ArrayList<Lapin> lapins) {
         // Déplacement aléatoire
-        if (Environnement.getInstance().generateur.nextDouble() < PROB_CHGT_DIRECTION) {
-            vitesseX = Environnement.getInstance().generateur.nextDouble() - 0.5;
-            vitesseY = Environnement.getInstance().generateur.nextDouble() - 0.5;
+        ArrayList<Lapin> dansZone = new ArrayList();
+        dansZone.addAll(lapins);
+        dansZone.removeIf(l -> (Distance(l) > l.zoneInfluence()));
+        Collections.sort(dansZone, (Lapin l1, Lapin l2) -> (Distance(l1) < Distance(l2) ? -1: 1));
+        Lapin but = null;
+        if (!dansZone.isEmpty())
+                but = dansZone.get(0);
+        if (but == null) {
+            if (Environnement.getInstance().generateur.nextDouble() < PROB_CHGT_DIRECTION) {
+                vitesseX = Environnement.getInstance().generateur.nextDouble() - 0.5;
+                vitesseY = Environnement.getInstance().generateur.nextDouble() - 0.5;
+            }
         }
+        else {
+            System.out.println("J'ai un but !");
+            vitesseX = but.posX - posX;
+            vitesseY = but.posY - posY;
+        }
+        Normaliser();
     }
     public boolean estVivant() {
         return !estMort;

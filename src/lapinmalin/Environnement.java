@@ -13,6 +13,7 @@ public class Environnement extends Observable {
     protected ArrayList<Lapin> lapins;
     protected ArrayList<Renard> renards;
     protected int nbIterations = 0;
+    protected int FREQUENCE_APPARITION_LAPIN = 200;
 
     private Environnement() {
         lapins = new ArrayList();
@@ -49,7 +50,7 @@ public class Environnement extends Observable {
             if (!l.estVivant())
                 lapin.remove();
             else {
-                l.MiseAJourDirection(lapins);
+                l.MiseAJourDirection();
                 l.MiseAJourPosition();
             }
         }
@@ -60,17 +61,22 @@ public class Environnement extends Observable {
                 System.out.println("Un renard est mort !");
             }
             else {
-                r.MiseAJourDirection(renards);
+                r.MiseAJourDirection(lapins);
                 r.MiseAJourPosition();
                 r.updateAndCheckIfDead();
             }
         }
 
         nbIterations++;
-        if (nbIterations % 500 == 0) {
+        if (nbIterations % FREQUENCE_APPARITION_LAPIN == 0) {
+            Lapin lapin = new Lapin(generateur.nextDouble() * largeur, generateur.nextDouble() * hauteur);
+            lapins.add(lapin);
+            System.out.println("Un lapin a été créé !");
+        }
+        /*if (nbIterations % 500 == 0) {
             Collections.reverse(lapins);
             Collections.reverse(renards);
-        }
+        }*/
 
         setChanged();
         notifyObservers();

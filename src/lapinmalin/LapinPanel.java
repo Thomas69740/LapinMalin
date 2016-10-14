@@ -87,7 +87,7 @@ public class LapinPanel extends JPanel implements Observer, MouseListener {
                 renardsVivant++;
             }
         }
-        System.out.println(env.lapins.size() + " - " + lapinsVivant + "       " + env.renards.size() + " - " + renardsVivant);
+        //System.out.println(env.lapins.size() + " - " + lapinsVivant + "       " + env.renards.size() + " - " + renardsVivant);
     }
 
     public void DessinerAgent(Objet obj, Graphics g) {
