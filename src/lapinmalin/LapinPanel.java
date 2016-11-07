@@ -18,8 +18,8 @@ public class LapinPanel extends JPanel implements Observer, MouseListener {
     Environnement env;
     static int PERIOD = 10;
     static int DELAY = 0;
-    static int NB_RENARDS_START = 5;
-    static int NB_LAPINS_START = 15;
+    static int NB_RENARDS_START = 3;
+    static int NB_LAPINS_START = 10;
     protected JTextField nbLapinsField;
     protected JTextField nbRenardsField;
 

@@ -42,17 +42,19 @@ public class Application {
         JLabel nbRenardsStartLabel = new JLabel("Nombre renards début ");
         JLabel nbLapinsStartLabel = new JLabel("Nombre lapins début ");
         JLabel frequenceLapinsLabel = new JLabel("Nb tours création d'un lapin ");
-        JLabel zoneInfluenceLapinLabel = new JLabel("Zone d'influence d'un lapin ");
+        JLabel frequenceRenardsLabel = new JLabel("Nb tours création d'un renard ");
+        JLabel zoneInfluenceLapinLabel = new JLabel("Distance de visibilité d'un renard ");
         JLabel pasLapinLabel = new JLabel("Pas d'un lapin ");
         JLabel pasRenardLabel = new JLabel("Pas d'un renard ");
         JLabel gainVieLabel = new JLabel("Regain PV renard ");
-        JLabel vieLabel = new JLabel("Vie d'un renard ");
+        JLabel vieLabel = new JLabel("Nb tours avant mort d'un renard ");
         JLabel nbRenardsLabel = new JLabel("<html>Nombre de <font color='#FF2300'>renards</font> en vie </html> ");
         JLabel nbLapinsLabel = new JLabel("<html>Nombre de <font color='#119137'>lapins</font> en vie </html> ");
 
         JTextField nbRenardsStartText = new JTextField();
         JTextField nbLapinsStartText = new JTextField();
         JTextField frequenceLapinText = new JTextField();
+        JTextField frequenceRenardText = new JTextField();
         JTextField zoneInfluenceLapinText = new JTextField();
         JTextField pasLapinText = new JTextField();
         JTextField pasRenardText = new JTextField();
@@ -72,6 +74,8 @@ public class Application {
         paramPanel.add(nbLapinsStartText, right);
         paramPanel.add(frequenceLapinsLabel, left);
         paramPanel.add(frequenceLapinText, right);
+        paramPanel.add(frequenceRenardsLabel, left);
+        paramPanel.add(frequenceRenardText, right);
         paramPanel.add(zoneInfluenceLapinLabel, left);
         paramPanel.add(zoneInfluenceLapinText, right);
         paramPanel.add(pasLapinLabel, left);
@@ -91,6 +95,7 @@ public class Application {
         nbRenardsStartText.setText(Integer.toString(LapinPanel.NB_RENARDS_START));
         nbLapinsStartText.setText(Integer.toString(LapinPanel.NB_LAPINS_START));
         frequenceLapinText.setText(Integer.toString(Environnement.getInstance().FREQUENCE_APPARITION_LAPIN));
+        frequenceRenardText.setText(Integer.toString(Environnement.getInstance().FREQUENCE_APPARITION_RENARD));
         zoneInfluenceLapinText.setText(Integer.toString(Lapin.ZONE_INFLUENCE_LAPIN));
         pasLapinText.setText(Double.toString(Lapin.PAS));
         pasRenardText.setText(Double.toString(Renard.PAS));
@@ -111,6 +116,7 @@ public class Application {
                 LapinPanel.NB_LAPINS_START = Integer.parseInt(nbLapinsStartText.getText());
                 LapinPanel.NB_RENARDS_START = Integer.parseInt(nbRenardsStartText.getText());
                 Environnement.getInstance().FREQUENCE_APPARITION_LAPIN = Integer.parseInt(frequenceLapinText.getText());
+                Environnement.getInstance().FREQUENCE_APPARITION_RENARD = Integer.parseInt(frequenceRenardText.getText());
                 Lapin.ZONE_INFLUENCE_LAPIN = Integer.parseInt(zoneInfluenceLapinText.getText());
                 Lapin.PAS = Double.parseDouble(pasLapinText.getText());
                 Renard.PAS = Double.parseDouble(pasRenardText.getText());

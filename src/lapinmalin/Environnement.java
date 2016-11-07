@@ -13,7 +13,8 @@ public class Environnement extends Observable {
     protected ArrayList<Lapin> lapins;
     protected ArrayList<Renard> renards;
     protected int nbIterations = 0;
-    protected int FREQUENCE_APPARITION_LAPIN = 100;
+    protected int FREQUENCE_APPARITION_LAPIN = 50;
+    protected int FREQUENCE_APPARITION_RENARD = 500;
 
     public Environnement() {
         lapins = new ArrayList();
@@ -72,6 +73,11 @@ public class Environnement extends Observable {
             Lapin lapin = new Lapin(generateur.nextDouble() * largeur, generateur.nextDouble() * hauteur);
             lapins.add(lapin);
             System.out.println("Un lapin a été créé !");
+        }
+        if (nbIterations % FREQUENCE_APPARITION_RENARD == 0) {
+            Renard renard = new Renard(generateur.nextDouble() * largeur, generateur.nextDouble() * hauteur);
+            renards.add(renard);
+            System.out.println("Un renard à été créé !");
         }
         /*if (nbIterations % 500 == 0) {
             Collections.reverse(lapins);
