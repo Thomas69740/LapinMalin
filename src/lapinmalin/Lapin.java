@@ -9,7 +9,7 @@ import java.util.Collections;
 public class Lapin extends Objet {
     protected static double PAS = 2;
     protected static double PROB_CHGT_DIRECTION = 0.05;
-    protected static int ZONE_INFLUENCE_LAPIN = 50;
+    protected static int ZONE_INFLUENCE_LAPIN = 70;
 
     protected double vitesseX;
     protected double vitesseY;

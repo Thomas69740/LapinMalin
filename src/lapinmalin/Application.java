@@ -2,6 +2,8 @@ package lapinmalin;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by Gildasftw on 11/10/2016.
@@ -31,22 +33,22 @@ public class Application {
 
         GridBagConstraints left = new GridBagConstraints();
         GridBagConstraints right = new GridBagConstraints();
+        GridBagConstraints bottom = new GridBagConstraints();
         left.anchor = GridBagConstraints.EAST;
         right.weightx = 2.0;
         right.fill = GridBagConstraints.HORIZONTAL;
         right.gridwidth = GridBagConstraints.REMAINDER;
 
-        JLabel nbRenardsStartLabel = new JLabel("Nombre renards début : ");
-        JLabel nbLapinsStartLabel = new JLabel("Nombre lapins début : ");
-        JLabel frequenceLapinsLabel = new JLabel("Nb tours création d'un lapin : ");
-        JLabel zoneInfluenceLapinLabel = new JLabel("Zone d'influence d'un lapin : ");
-        JLabel pasLapinLabel = new JLabel("Pas d'un lapin : ");
-        JLabel pasRenardLabel = new JLabel("Pas d'un renard : ");
-        JLabel gainVieLabel = new JLabel("Regain PV renard : ");
-        JLabel vieLabel = new JLabel("Vie d'un renard : ");
-        JLabel periodRateLabel = new JLabel("Durée d'une période : ");
-        JLabel nbRenardsLabel = new JLabel("Nombre de renards en vie : ");
-        JLabel nbLapinsLabel = new JLabel("Nombre de lapins en vie : ");
+        JLabel nbRenardsStartLabel = new JLabel("Nombre renards début ");
+        JLabel nbLapinsStartLabel = new JLabel("Nombre lapins début ");
+        JLabel frequenceLapinsLabel = new JLabel("Nb tours création d'un lapin ");
+        JLabel zoneInfluenceLapinLabel = new JLabel("Zone d'influence d'un lapin ");
+        JLabel pasLapinLabel = new JLabel("Pas d'un lapin ");
+        JLabel pasRenardLabel = new JLabel("Pas d'un renard ");
+        JLabel gainVieLabel = new JLabel("Regain PV renard ");
+        JLabel vieLabel = new JLabel("Vie d'un renard ");
+        JLabel nbRenardsLabel = new JLabel("<html>Nombre de <font color='#FF2300'>renards</font> en vie </html> ");
+        JLabel nbLapinsLabel = new JLabel("<html>Nombre de <font color='#119137'>lapins</font> en vie </html> ");
 
         JTextField nbRenardsStartText = new JTextField();
         JTextField nbLapinsStartText = new JTextField();
@@ -56,9 +58,10 @@ public class Application {
         JTextField pasRenardText = new JTextField();
         JTextField gainVieText = new JTextField();
         JTextField vieText = new JTextField();
-        JTextField periodRateText = new JTextField();
         JTextField nbRenardsText = new JTextField();
         JTextField nbLapinsText = new JTextField();
+
+        JButton submitButton = new JButton("Recharger");
 
         nbRenardsText.setEditable(false);
         nbLapinsText.setEditable(false);
@@ -79,16 +82,20 @@ public class Application {
         paramPanel.add(gainVieText, right);
         paramPanel.add(vieLabel, left);
         paramPanel.add(vieText, right);
-        paramPanel.add(periodRateLabel, left);
-        paramPanel.add(periodRateText, right);
         paramPanel.add(nbRenardsLabel, left);
         paramPanel.add(nbRenardsText, right);
         paramPanel.add(nbLapinsLabel, left);
         paramPanel.add(nbLapinsText, right);
+        paramPanel.add(submitButton, left);
 
-
-
-
+        nbRenardsStartText.setText(Integer.toString(LapinPanel.NB_RENARDS_START));
+        nbLapinsStartText.setText(Integer.toString(LapinPanel.NB_LAPINS_START));
+        frequenceLapinText.setText(Integer.toString(Environnement.getInstance().FREQUENCE_APPARITION_LAPIN));
+        zoneInfluenceLapinText.setText(Integer.toString(Lapin.ZONE_INFLUENCE_LAPIN));
+        pasLapinText.setText(Double.toString(Lapin.PAS));
+        pasRenardText.setText(Double.toString(Renard.PAS));
+        gainVieText.setText(Integer.toString(Renard.GAIN_LIFE));
+        vieText.setText(Integer.toString(Renard.TURN_BEFORE_DIE));
 
         paramFrame.setContentPane(paramPanel);
         paramFrame.setVisible(true);
@@ -96,6 +103,24 @@ public class Application {
         LapinPanel panel = new LapinPanel();
         fenetre.setContentPane(panel);
         fenetre.setVisible(true);
-        panel.Lancer();
+        panel.Lancer(nbLapinsText, nbRenardsText);
+
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LapinPanel.NB_LAPINS_START = Integer.parseInt(nbLapinsStartText.getText());
+                LapinPanel.NB_RENARDS_START = Integer.parseInt(nbRenardsStartText.getText());
+                Environnement.getInstance().FREQUENCE_APPARITION_LAPIN = Integer.parseInt(frequenceLapinText.getText());
+                Lapin.ZONE_INFLUENCE_LAPIN = Integer.parseInt(zoneInfluenceLapinText.getText());
+                Lapin.PAS = Double.parseDouble(pasLapinText.getText());
+                Renard.PAS = Double.parseDouble(pasRenardText.getText());
+                Renard.GAIN_LIFE = Integer.parseInt(gainVieText.getText());
+                Renard.TURN_BEFORE_DIE = Integer.parseInt(vieText.getText());
+
+                panel.Lancer(nbLapinsText, nbRenardsText);
+                panel.revalidate();
+                panel.repaint();
+            }
+        });
     }
 }

@@ -18,15 +18,21 @@ public class LapinPanel extends JPanel implements Observer, MouseListener {
     Environnement env;
     static int PERIOD = 10;
     static int DELAY = 0;
+    static int NB_RENARDS_START = 5;
+    static int NB_LAPINS_START = 15;
+    protected JTextField nbLapinsField;
+    protected JTextField nbRenardsField;
 
     public LapinPanel() {
         this.setBackground(Color.WHITE);
         this.addMouseListener(this);
     }
 
-    public void Lancer() {
+    public void Lancer(JTextField nbl, JTextField nbr) {
         env = Environnement.getInstance();
-        env.Initialiser(15, 5, getWidth(), getHeight());
+        nbLapinsField = nbl;
+        nbRenardsField = nbr;
+        env.Initialiser(NB_LAPINS_START, NB_RENARDS_START, getWidth() - 10, getHeight() - 5);
         env.addObserver(this);
     }
     @Override
@@ -87,6 +93,8 @@ public class LapinPanel extends JPanel implements Observer, MouseListener {
                 renardsVivant++;
             }
         }
+        nbLapinsField.setText(Integer.toString(lapinsVivant));
+        nbRenardsField.setText(Integer.toString(renardsVivant));
         //System.out.println(env.lapins.size() + " - " + lapinsVivant + "       " + env.renards.size() + " - " + renardsVivant);
     }
 

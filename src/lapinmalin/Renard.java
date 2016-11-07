@@ -10,11 +10,12 @@ public class Renard extends Objet {
     protected static double PAS = 2;
     protected static double PROB_CHGT_DIRECTION = 0.05;
     protected static int GAIN_LIFE = 200;
+    protected static int TURN_BEFORE_DIE = 400;
 
     protected double vitesseX;
     protected double vitesseY;
     protected boolean estMort = false;
-    protected int turnBeforeDie = 400;
+    protected int turnBeforeDie = TURN_BEFORE_DIE;
 
     protected void Normaliser() {
         double longueur = Math.sqrt(vitesseX * vitesseX + vitesseY * vitesseY);

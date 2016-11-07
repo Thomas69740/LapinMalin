@@ -13,9 +13,9 @@ public class Environnement extends Observable {
     protected ArrayList<Lapin> lapins;
     protected ArrayList<Renard> renards;
     protected int nbIterations = 0;
-    protected int FREQUENCE_APPARITION_LAPIN = 200;
+    protected int FREQUENCE_APPARITION_LAPIN = 100;
 
-    private Environnement() {
+    public Environnement() {
         lapins = new ArrayList();
         renards = new ArrayList();
         generateur = new Random();
